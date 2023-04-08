@@ -1,13 +1,25 @@
-import './App.css';
-import Home from './views/Home/Home';
-import Landing from './views/Landing/Landing';
+import "./App.css";
+import Landing from "./views/Landing/Landing";
+import Home from "./views/Home/Home";
+import Detail from "./views/Detail/Detail";
+import Form from "./views/Form/Form";
+import { Switch, Route, useLocation } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
-      <Home></Home>
-      <Landing></Landing>
+      
+      {location.pathname !== "/" && <NavBar />}
+    <Switch>      
+      <Route exact path="/" component={Landing} />
+      <Route path="/home" render={() => <Home />} />
+      <Route path="/detail" component={Detail} />
+      <Route path="/create" component={Form} />
+    </Switch>
+      
     </div>
   );
 }
