@@ -1,9 +1,16 @@
 import React from "react";
 import style from "./Filters.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllTypes } from "../../redux/actions";
 
 const Filters = () => {
-    const types = useSelector(state => state.types);
+  const types = useSelector((state) => state.types);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllTypes());
+  }, []);
 
   return (
     <div className={style.allFilters}>
