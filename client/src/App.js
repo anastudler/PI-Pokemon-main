@@ -11,15 +11,13 @@ function App() {
 
   return (
     <div className="App">
-      
       {location.pathname !== "/" && <NavBar />}
-    <Switch>      
-      <Route exact path="/" component={Landing} />
-      <Route path="/home" render={() => <Home />} />
-      <Route path="/detail" component={Detail} />
-      <Route path="/create" component={Form} />
-    </Switch>
-      
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/home" render={() => <Home />} />
+        <Route path="/detail" component={Detail} />
+        <Route path="/create" component={Form} />
+      </Switch>
     </div>
   );
 }

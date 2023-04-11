@@ -1,7 +1,10 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import Filters from "../../components/Filters/Filters";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons } from "../../redux/actions";
+import style from "./Home.module.css";
+// import Paginado from "../../components/Paginado/Paginado";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,45 +19,12 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <div>
-        <h1>Esto es la Home</h1>
         <button onClick={(e) => handleClick(e)}>Ver Todos</button>
       </div>
       <div>
-        <div>
-          <h5>Origen:</h5>
-          <select name="origin">
-            <option>Seleccionar</option>
-            <option value="api">Api</option>
-            <option value="db">Base de Datos</option>
-          </select>
-        </div>
-
-        <div>
-          <h5>Tipo:</h5>
-          <select name="type">
-            <option>Seleccionar</option>
-          </select>
-        </div>
-
-        <div>
-          <h5>Orden Alfabetico:</h5>
-          <select name="alphabetic">
-            <option>Seleccionar</option>
-            <option value="asc">Ascendente</option>
-            <option value="desc">Descendente</option>
-          </select>
-        </div>
-        
-        <div>
-          <h5>Ataque:</h5>
-          <select name="attack">
-            <option>Seleccionar</option>
-            <option value="min">Mínimo</option>
-            <option value="max">Máximo</option>
-          </select>
-        </div>
+        <Filters />
       </div>
       <div>
         <CardsContainer />

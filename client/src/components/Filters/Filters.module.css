@@ -1,0 +1,8 @@
+.allFilters{
+    display: flex;
+    flex-direction: row;
+}
+
+.selectFilter{
+    display: flex;
+}
