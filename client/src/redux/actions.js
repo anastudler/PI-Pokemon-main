@@ -4,8 +4,11 @@ export const GET_ALL_POKEMONS = "GET_ALL_POKEMONS";
 export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
-// export const GET_ALL_TYPES = "GET_ALL_TYPES";
-// export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+export const ORDER_ALPHABETIC = "ORDER_ALPHABETIC";
+export const ORDER_ATTACK = "ORDER_ATTACK";
 // export const CLEAN_POKEMON_DETAIL = "CLEAN_POKEMON_DETAIL";
 // export const CLEAN_POKEMONS = "CLEAN_POKEMONS";
 // export const CLEAN_POKEMONS_BY_NAME = "CLEAN_POKEMONS_BY_NAME";
@@ -21,7 +24,7 @@ export const GET_ALL_TYPES = "GET_ALL_TYPES";
 // export const ORDER_ATTACK_MIN = "ORDER_ATTACK_MIN";
 // export const CLEAN_ORDER_ATTACK_MIN = "CLEAN_ORDER_ATTACK_MIN";
 // export const ORDER_ATTACK_MAX = "ORDER_ATTACK_MAX";
-// export const CLEAN_ORDER_ATTACK_MAX = "CLEAN_ORDER_ATTACK_MAX";     
+// export const CLEAN_ORDER_ATTACK_MAX = "CLEAN_ORDER_ATTACK_MAX";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
@@ -51,9 +54,37 @@ export const getPokemonByName = (name) => {
 
 export const getAllTypes = () => {
   return async function (dispatch) {
-      const axiosInfo = await axios.get("http://localhost:3001/types");
-      const types = axiosInfo.data;
-      dispatch({ type: GET_ALL_TYPES, payload: types });
+    const axiosInfo = await axios.get("http://localhost:3001/types");
+    const types = axiosInfo.data;
+    dispatch({ type: GET_ALL_TYPES, payload: types });
+  };
+};
+
+export const filterPokemonsByTypes = (types) => {
+  return {
+    type: FILTER_BY_TYPE,
+    payload: types,
+  };
+};
+
+export const filterByOrigin = (origin) => {
+  return {
+    type: FILTER_BY_ORIGIN,
+    payload: origin,
+  };
+};
+
+export const orderALphabetic = (payload) => {
+  return {
+    type: ORDER_ALPHABETIC,
+    payload,
+  };
+};
+
+export const orderByAttack = (payload) => {
+  return {
+    type: ORDER_ATTACK,
+    payload,
   };
 };
 
@@ -66,7 +97,7 @@ export const getAllTypes = () => {
 // };
 
 // export const cleanPokemonsByName = () => {
-//   return { type: CLEAN_POKEMONS_BY_NAME }; 
+//   return { type: CLEAN_POKEMONS_BY_NAME };
 // };
 
 // export const orderByDb = () => {

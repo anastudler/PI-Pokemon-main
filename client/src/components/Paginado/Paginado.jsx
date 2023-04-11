@@ -4,8 +4,8 @@ import style from "./Paginado.module.css";
 const Paginado = ({ pokemonsPerPage, allPokemons, paginado }) => {
   const pageNumebers = [];
 
-  for (let i = 0; i <= Math.ceil(allPokemons / pokemonsPerPage); i++) {
-    pageNumebers.push(i+1);
+  for (let i = 1; i <= Math.ceil(allPokemons / pokemonsPerPage); i++) {
+    pageNumebers.push(i);
   }
 
   return (
