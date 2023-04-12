@@ -339,6 +339,7 @@ const CardsContainer = () => {
           <Card
           id={pokemon.id}
           image={pokemon.image}
+          // ? pokemon.image : pokemon[0].image
           name={pokemon.name}
           types={pokemon.types}
           />

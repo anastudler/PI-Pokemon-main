@@ -7,36 +7,13 @@ import {
   FILTER_BY_ORIGIN,
   ORDER_ALPHABETIC,
   ORDER_ATTACK,
-  // CLEAN_POKEMON_DETAIL,
-  // CLEAN_POKEMONS,
-  // CLEAN_POKEMONS_BY_NAME,
-  // ORDER_BY_DB,
-  // ORDER_BY_API,
-  // CLEAN_POKEMONS_ORIGIN,
-  // ORDER_BY_TYPE,
-  // CLEAN_POKEMONS_BY_TYPE,
-  // ORDER_ALPH_ASC,
-  // CLEAN_ORDER_ALPH_ASC,
-  // ORDER_ALPH_DES,
-  // CLEAN_ORDER_ALPH_DES,
-  // ORDER_ATTACK_MIN,
-  // CLEAN_ORDER_ATTACK_MIN,
-  // ORDER_ATTACK_MAX,
-  // CLEAN_ORDER_ATTACK_MAX,
+  POST_POKEMON
 } from "./actions";
 
 const initialState = {
   pokemons: [],
-  pokemonsByName: [],
-  pokemonById: {},
-  types: [],
   allPokemons: [],
-  // pokemonsByOrigin: [],
-  // pokemonsByType: [],
-  // pokemonsAlphAsc: [],
-  // pokemonsAlphDes: [],
-  // pokemonsAttackMin: [],
-  // pokemonsAttackMax: [],
+  types: [],
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -53,11 +30,16 @@ const reducer = (state = initialState, action) => {
     case GET_POKEMON_BY_NAME:
       return {
         ...state,
-        pokemonsByName: action.payload === [] ? [] : action.payload,
+        pokemons: action.payload,
       };
 
     case GET_ALL_TYPES:
       return { ...state, types: action.payload };
+
+    case POST_POKEMON:
+      return {
+        ...state
+      }
 
     case FILTER_BY_TYPE:
       return {

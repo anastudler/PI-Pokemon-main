@@ -1,11 +1,14 @@
 import style from './Card.module.css'
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
   return (
     // <Link to={`/detail/${id}`} className={style.linkCard}>
     <div className={style.card}>
       <img src={props.image} alt="Un pokemon" />
+      <Link to='/detail'>
       <h3>{props.name}</h3>
+      </Link>
       <h5>Tipo</h5>
       <ul>
         {props.types.map((type, index) => {
