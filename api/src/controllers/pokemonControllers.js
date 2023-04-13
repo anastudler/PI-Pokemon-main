@@ -1,6 +1,24 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 
+// Crea un array con estos datos vacios para poder usar con la api
+const cleanInfo = (obj) => {
+  return {
+    id: obj.id,
+    name: obj.name,
+    image: obj.sprites.other.dream_world.front_default,
+    hp: obj.stats[0].base_stat,
+    attack: obj.stats[1].base_stat,
+    defense: obj.stats[2].base_stat,
+    speed: obj.stats[5].base_stat,
+    height: obj.height,
+    weight: obj.weight,
+    types: obj.types.map((elem) => elem.type.name),
+    created: false,
+  };
+};
+
+// Crea un pokemon nuevo pero no me pasa los types
 const createPokemon = async (
   name,
   image,
@@ -40,22 +58,7 @@ const getPokemonById = async (id, source) => {
   return pokemon;
 };
 
-// Crea un array con estos datos vacios para poder usar con la api
-const cleanInfo = (obj) => {
-  return {
-    id: obj.id,
-    name: obj.name,
-    image: obj.sprites.other.dream_world.front_default,
-    hp: obj.stats[0].base_stat,
-    attack: obj.stats[1].base_stat,
-    defense: obj.stats[2].base_stat,
-    speed: obj.stats[5].base_stat,
-    height: obj.height,
-    weight: obj.weight,
-    types: obj.types.map((elem) => elem.type.name),
-    created: false,
-  };
-};
+
 
 // Trae los elementos con la cleanInfo de 5 paginas de la api de pokemon más lo creado en la base de datos.
 const getAllPokemons = async () => {

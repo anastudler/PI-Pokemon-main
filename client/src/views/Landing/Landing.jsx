@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import style from "./Landing.module.css";
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Pokemon</h1>
+    <div className={style.landing}>
+      <h1>Pokemon App</h1>
       <Link to="/home">
-        <button>Ingresar</button>
+        <button className={style.landingButton}>Ingresar</button>
       </Link>
+      <p>By Ana Studler</p>
     </div>
   );
 };

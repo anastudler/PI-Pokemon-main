@@ -16,8 +16,18 @@ const getAllTypes = async () => {
     };
   });
 
-  const results = await Type.bulkCreate(data);
-  return results;
+  
+//   const typeApi = await axios.get("https://pokeapi.co/api/v2/type");
+// const data = typeApi.data.results.map((elem) => {
+//   return {
+//     id: elem.url.split("/")[6], // Extract the id from the type's URL
+//     name: elem.name,
+//   };
+// });
+
+const results = await Type.bulkCreate(data);
+return results;
+
 };
 
 module.exports = { getAllTypes };

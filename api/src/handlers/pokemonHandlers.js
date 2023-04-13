@@ -29,8 +29,7 @@ const {
     };
 };
 
-  // if (name) res.send('Llama a la función que busca por nombre');
-  // else res.send('Quiero enviar todos los usuarios');
+ 
 
 
 
@@ -53,12 +52,12 @@ const getPokemonByIdHandler = async (req, res) => {
 // Handler que Crea un nuevo pokemon en la Db
 const createPokemonHandler = async (req, res) => {
   // res.send("ESTA RUTA CREA UN NUEVO POKEMON");
-  let { name, image, hp, attack, defense, speed, height, weight, typesId } = req.body;
+  let { name, image, hp, attack, defense, speed, height, weight, typesName } = req.body;
 
     try {
         if (!name || !image || !hp || !attack || !defense) throw new Error("Faltan datos obligatorios");
         name = name.toLowerCase();
-        const newPokemon = await createPokemon(name, image, hp, attack, defense, speed, height, weight, typesId);
+        const newPokemon = await createPokemon(name, image, hp, attack, defense, speed, height, weight, typesName);
         res.status(200).json(newPokemon);
     } catch (error) {
         res.status(400).json({error: error.message});
