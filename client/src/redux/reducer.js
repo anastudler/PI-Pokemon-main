@@ -8,7 +8,6 @@ import {
   ORDER_ALPHABETIC,
   ORDER_ATTACK,
   POST_POKEMON,
-  CLEAN_POKEMON_DETAIL,
 } from "./actions";
 
 const initialState = {

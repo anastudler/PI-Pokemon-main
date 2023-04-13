@@ -2,7 +2,9 @@ import React from "react";
 import style from "./Filters.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import SearchBar from "../SearchBar/SearchBar";
 import {
+  getAllPokemons,
   getAllTypes,
   filterPokemonsByTypes,
   filterByOrigin,
@@ -34,8 +36,19 @@ const Filters = () => {
     dispatch(orderByAttack(e.target.value));
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(getAllPokemons());
+  };
+
   return (
     <div className={style.allFilters}>
+      <div className={style.buttonVerTodos}>
+        <button onClick={(e) => handleClick(e)}>Ver Todos</button>
+      </div>
+      <div>
+      <SearchBar />
+      </div>
       <div>
         <div className={style.filter}>
           <h5>Origen:</h5>

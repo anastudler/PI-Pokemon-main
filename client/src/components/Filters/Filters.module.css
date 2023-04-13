@@ -1,8 +1,13 @@
-.allFilters{
-    display: flex;
-    flex-direction: row;
+.allFilters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.selectFilter{
-    display: flex;
+.selectFilter {
+  display: flex;
+}
+
+.buttonVerTodos {
+    padding: 20px;
 }
