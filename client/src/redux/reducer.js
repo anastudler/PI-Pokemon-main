@@ -7,13 +7,15 @@ import {
   FILTER_BY_ORIGIN,
   ORDER_ALPHABETIC,
   ORDER_ATTACK,
-  POST_POKEMON
+  POST_POKEMON,
+  CLEAN_POKEMON_DETAIL,
 } from "./actions";
 
 const initialState = {
   pokemons: [],
   allPokemons: [],
   types: [],
+  pokemonById: {},
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,7 +27,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_POKEMON_BY_ID:
-      return { ...state, pokemon: action.payload };
+      return { ...state, pokemonById: action.payload };
 
     case GET_POKEMON_BY_NAME:
       return {
@@ -38,8 +40,8 @@ const reducer = (state = initialState, action) => {
 
     case POST_POKEMON:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case FILTER_BY_TYPE:
       return {

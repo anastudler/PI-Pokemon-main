@@ -14,8 +14,8 @@ function App() {
       {location.pathname !== "/" && <NavBar />}
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route path="/home" render={() => <Home />} />
-        <Route path="/detail" component={Detail} />
+        <Route path="/home" component={Home} />
+        <Route exact path="/detail/:id" component={Detail} />
         <Route path="/create" component={Form} />
       </Switch>
     </div>
