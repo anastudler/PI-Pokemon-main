@@ -16,6 +16,18 @@ const getAllTypes = async () => {
     };
   });
 
+  // const getAllTypes = async () => {
+  //   const types = await Type.findAll();
+  //   if (types.length) {
+  //     return types;
+  //   }
+  
+  //   const typeApi = await axios.get("https://pokeapi.co/api/v2/type");
+  //   const typesFromApi = typeApi.data.results.map(({ name }) => ({ name }));
+  //   const createdTypes = await Type.bulkCreate(typesFromApi);
+  
+  //   return createdTypes;
+  // };
   
 //   const typeApi = await axios.get("https://pokeapi.co/api/v2/type");
 // const data = typeApi.data.results.map((elem) => {

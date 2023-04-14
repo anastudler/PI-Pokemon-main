@@ -1,30 +1,25 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 
-// Crea un pokemon nuevo pero no me pasa los types
-const createPokemon = async (
-  name,
-  image,
-  hp,
-  attack,
-  defense,
-  speed,
-  height,
-  weight,
-  typesId
-) => {
-  const [newPokemon, created] = await Pokemon.findOrCreate(
-    {
-      where: { name },
-      defaults: { name, image, hp, attack, defense, speed, height, weight },
-    },
-    
-  );
+// Crea un pokemon nuevo!!
+const createPokemon = async (pokemonData) => {
+  const { name, image, hp, attack, defense, speed, height, weight, types } =
+    pokemonData;
+
+  const [newPokemon, created] = await Pokemon.findOrCreate({
+    where: { name },
+    defaults: { name, image, hp, attack, defense, speed, height, weight },
+  });
 
   if (!created)
     throw new Error("No se puede crear dos pokemons o más con el mismo nombre");
 
-  await newPokemon.addTypes(typesId);
+  // busca los tipos y los agrega al pokemon
+  const typeInstances = await Type.findAll({
+    where: { name: types },
+  });
+  await newPokemon.setTypes(typeInstances);
+
   return newPokemon;
 };
 
@@ -57,8 +52,6 @@ const getPokemonById = async (id, source) => {
   }
   return pokemon;
 };
-
-
 
 // Trae los elementos con la cleanInfo de 5 paginas de la api de pokemon más lo creado en la base de datos.
 const getAllPokemons = async () => {
@@ -125,6 +118,18 @@ const getAllPokemonsByNameInDb = async (name) => {
   return dbResults;
 };
 
+const getAllPokemonsBySpeed = async (speed) => {
+  const results = [];
+  try {
+    const apiResultsRaw = (
+      await axios.get(`https://pokeapi.co/api/v2/pokemon/${speed}`)
+    ).data;
+    const apiResults = cleanInfo(apiResultsRaw);
+    results.push(apiResults);
+    return results;
+  } catch (error) {}
+};
+
 const getAllPokemonsByNameInApi = async (name) => {
   const results = [];
   try {
@@ -144,4 +149,5 @@ module.exports = {
   getAllPokemons,
   getAllPokemonsByNameInDb,
   getAllPokemonsByNameInApi,
+  getAllPokemonsBySpeed,
 };
