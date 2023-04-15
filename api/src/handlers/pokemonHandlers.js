@@ -4,7 +4,7 @@ const {
   getPokemonById,
   getAllPokemonsByNameInDb,
   getAllPokemonsByNameInApi,
-  getAllPokemonsBySpeed,
+  // getAllPokemonsBySpeed,
 } = require("../controllers/pokemonControllers");
 
 const getpokemonHandler = async (req, res) => {
@@ -15,18 +15,20 @@ const getpokemonHandler = async (req, res) => {
       name = name.toLowerCase();
       const allPokemonsByNameInDb = await getAllPokemonsByNameInDb(name);
       const allPokemonsByNameInApi = await getAllPokemonsByNameInApi(name);
-      const pokemonsBySpeed = await getAllPokemonsBySpeed(speed);
-      const results = [
-        ...allPokemonsByNameInDb,
-        ...allPokemonsByNameInApi,
-        ...pokemonsBySpeed,
-      ];
+      const results = [...allPokemonsByNameInDb, ...allPokemonsByNameInApi];
 
       if (results.length === 0)
         throw new Error("Ningún pokemon coincide con la búsqueda");
 
       res.status(200).send(results);
-    } else {
+    }
+    // if (speed) {
+    //   const pokemonsBySpeed = await getAllPokemonsBySpeed(`speed=${speed}`);
+    //   const results = [...pokemonsBySpeed];
+
+    //   res.status(200).send(results);
+    // }
+    else {
       const allPokemons = await getAllPokemons();
       res.status(200).send(allPokemons);
     }

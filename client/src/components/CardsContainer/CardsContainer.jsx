@@ -22,6 +22,7 @@ const CardsContainer = () => {
       <div>
       <Paginado pokemonsPerPage={pokemonsPerPage} allPokemons={pokemons.length} paginado={paginado} />
       </div>
+      
       <div className={style.container}>
       {currentPokemons?.map((pokemon) => {
         return (

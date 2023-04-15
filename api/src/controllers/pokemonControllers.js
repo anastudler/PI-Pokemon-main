@@ -43,12 +43,23 @@ const cleanInfo = (obj) => {
 // Trae la info del pokemon por id, sea de la api o de la BDD
 const getPokemonById = async (id, source) => {
   let pokemon;
-  if (source === "api") {
+  if (source === "bdd") {
+    const pokemonDb = await Pokemon.findByPk(id, {
+      include: {
+        model: Type,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    });
+    pokemon = {
+      ...pokemonDb.toJSON(),
+      types: pokemonDb.types.map((e) => e.name),
+    };
+  } else {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     pokemon = cleanInfo(response.data);
-  } else {
-    // implement logic to retrieve data from database
-    pokemon = await Pokemon.findByPk(id);
   }
   return pokemon;
 };
@@ -117,18 +128,20 @@ const getAllPokemonsByNameInDb = async (name) => {
 
   return dbResults;
 };
-
-const getAllPokemonsBySpeed = async (speed) => {
-  const results = [];
-  try {
-    const apiResultsRaw = (
-      await axios.get(`https://pokeapi.co/api/v2/pokemon/${speed}`)
-    ).data;
-    const apiResults = cleanInfo(apiResultsRaw);
-    results.push(apiResults);
-    return results;
-  } catch (error) {}
-};
+// Lo que me pidieron hacer en la revision del pi
+// const getAllPokemonsBySpeed = async (speed) => {
+//   const results = [];
+//   try {
+//     const apiResultsRaw = (
+//       await axios.get(`https://pokeapi.co/api/v2/pokemon?speed=${speed}`)
+//     ).data;
+//     const apiResults = cleanInfo(apiResultsRaw);
+//     results.push(apiResults);
+//     return results;
+//   } catch (error) {
+//     return error;
+//   }
+// };
 
 const getAllPokemonsByNameInApi = async (name) => {
   const results = [];
@@ -140,7 +153,7 @@ const getAllPokemonsByNameInApi = async (name) => {
     results.push(apiResults);
     return results;
   } catch (error) {
-    return results;
+    return error;
   }
 };
 module.exports = {
@@ -149,5 +162,5 @@ module.exports = {
   getAllPokemons,
   getAllPokemonsByNameInDb,
   getAllPokemonsByNameInApi,
-  getAllPokemonsBySpeed,
+  // getAllPokemonsBySpeed,
 };
