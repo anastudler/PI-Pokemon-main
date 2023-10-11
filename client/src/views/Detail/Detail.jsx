@@ -21,7 +21,7 @@ const Detail = ({ match }) => {
             ? pokemon.name[0].toUpperCase() + pokemon.name.substring(1)
             : null}
         </p>
-        <p>#{pokemon.id}</p>
+        {/* <p>#{pokemon.id}</p> */}
         <img src={pokemon.image} alt="pokemon" />
         <p>Vida: {pokemon.hp}</p>
         <p>Ataque: {pokemon.attack}</p>

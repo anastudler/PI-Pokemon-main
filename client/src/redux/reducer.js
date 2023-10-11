@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
           elem.types.includes(action.payload)
         ),
       };
-    case FILTER_BY_ORIGIN:
+    case FILTER_BY_ORIGIN: {
       const originFilter =
         action.payload === "db"
           ? [...state.allPokemons].filter((elem) => elem.created)
@@ -59,8 +59,8 @@ const reducer = (state = initialState, action) => {
         pokemons:
           action.payload === "All" ? [...state.allPokemons] : originFilter,
       };
-
-    case ORDER_ALPHABETIC:
+    }
+    case ORDER_ALPHABETIC:{
       const orderAlpha =
         action.payload === "asc"
           ? [...state.pokemons].sort((a, b) => {
@@ -86,7 +86,8 @@ const reducer = (state = initialState, action) => {
         pokemons:
           action.payload === "All" ? [...state.allPokemons] : orderAlpha,
       };
-    case ORDER_ATTACK:
+    }
+    case ORDER_ATTACK: {
       const orderAttack =
         action.payload === "min"
           ? [...state.pokemons].sort((a, b) => {
@@ -112,6 +113,7 @@ const reducer = (state = initialState, action) => {
         pokemons:
           action.payload === "All" ? [...state.allPokemons] : orderAttack,
       };
+    }
     //   case CLEAN_POKEMON_DETAIL:
     //     return { ...state, pokemonById: {} };
     //   case CLEAN_POKEMONS:
