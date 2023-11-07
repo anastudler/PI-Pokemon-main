@@ -8,7 +8,7 @@ const CardsContainer = () => {
 
   const pokemons = useSelector((state) => state.pokemons);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(15);
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
   const currentPokemons = pokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);

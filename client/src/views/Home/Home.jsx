@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.filters}>
         <Filters />
       </div>
       <div>
